@@ -15,7 +15,6 @@ export const ComputerSort = () => {
     useEffect(() => {
 
         const insertionSort = async () => {
-            console.log("insertionSort")
             let arr = [...list]
             let n = arr.length;
             for (let i = 1; i < n; i++) {
@@ -27,7 +26,6 @@ export const ComputerSort = () => {
                 }
                 arr[j + 1] = current;
                 await sleep(2000)
-                console.log("timeout ended")
                 console.log(arr)
                 setList([...arr]);
             }
