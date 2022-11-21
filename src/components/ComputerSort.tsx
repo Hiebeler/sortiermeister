@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { alreadyStarted, randomList, started } from "../atomStorage";
 import { Item } from "./Item";
 
@@ -11,32 +11,37 @@ export const ComputerSort = () => {
 
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-    const insertionSort = async () => {
-        console.log("insertionSort")
-        let arr = [...list]
-        let n = arr.length;
-        for (let i = 1; i < n; i++) {
-            let current = arr[i];
-            let j = i - 1;
-            while ((j > -1) && (current < arr[j])) {
-                arr[j + 1] = arr[j];
-                j--;
-            }
-            arr[j + 1] = current;
-            await sleep(2000)
-            console.log("timeout ended")
-            console.log(arr)
-            setList([...arr]);
-        }
-        setList(arr)
-    }
-
+    
     useEffect(() => {
+
+        const insertionSort = async () => {
+            console.log("insertionSort")
+            let arr = [...list]
+            let n = arr.length;
+            for (let i = 1; i < n; i++) {
+                let current = arr[i];
+                let j = i - 1;
+                while ((j > -1) && (current < arr[j])) {
+                    arr[j + 1] = arr[j];
+                    j--;
+                }
+                arr[j + 1] = current;
+                await sleep(2000)
+                console.log("timeout ended")
+                console.log(arr)
+                setList([...arr]);
+            }
+            setList(arr)
+        }
+        
         if (start && !hasStarted) {
             insertionSort();
             setStarted(true)
         }
-    }, [start])
+
+        
+    
+    }, [hasStarted, list, setList, setStarted, start])
 
     return (
         <div className="flex-row flex gap-5">
