@@ -1,9 +1,9 @@
 type Props = {
-    number: number
+    number: number,
+    click: (element:any) => void
 }
 
 export const Item = (props: Props) => {
-    // give div color based on number
     const color = () => {
         if (props.number < 10) {
             return 'rgb(239 68 68)'
@@ -29,7 +29,7 @@ export const Item = (props: Props) => {
     }
 
     return (
-        <div className="w-full h-20" style={{backgroundColor: color()}}>
+        <div className="w-full h-20" style={{backgroundColor: color()}} onClick={((element) => { props.click(element)})}>
             {props.number}
         </div>
     )

@@ -1,13 +1,14 @@
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { alreadyStarted, randomList, started } from "../atomStorage";
+import { alreadyStarted, computerList, finished, started } from "../atomStorage";
 import { Item } from "./Item";
 
 export const ComputerSort = () => {
 
-    const [list, setList] = useAtom(randomList)
+    const [list, setList] = useAtom(computerList)
     const [start] = useAtom(started)
     const [hasStarted, setStarted] = useAtom(alreadyStarted)
+    const [finishedSorting, setFinished] = useAtom(finished)
 
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -29,6 +30,8 @@ export const ComputerSort = () => {
                 console.log(arr)
                 setList([...arr]);
             }
+            console.log("finished")
+            setFinished(true)
             setList(arr)
         }
         
@@ -39,12 +42,12 @@ export const ComputerSort = () => {
 
         
     
-    }, [hasStarted, list, setList, setStarted, start])
+    }, [hasStarted, list, setList, setStarted, start, setFinished])
 
     return (
         <div className="flex-row flex gap-5">
             {list.map((number, index) => (
-                <Item number={number} key={index} />
+                <Item number={number} click={() => {}} key={index} />
             ))}
         </div>
     )
