@@ -8,7 +8,7 @@ export const ComputerSort = () => {
     const [list, setList] = useAtom(computerList)
     const [start] = useAtom(started)
     const [hasStarted, setStarted] = useAtom(alreadyStarted)
-    const [finishedSorting, setFinished] = useAtom(finished)
+    const [, setFinished] = useAtom(finished)
 
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -27,7 +27,6 @@ export const ComputerSort = () => {
                 }
                 arr[j + 1] = current;
                 await sleep(2000)
-                console.log(arr)
                 setList([...arr]);
             }
             console.log("finished")
