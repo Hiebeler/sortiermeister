@@ -28,3 +28,23 @@ code {
   src: local("digitalo"),
    url("./fonts/digitalo.ttf") format("truetype");
   }
+  @font-face {
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''), url('./fonts/Dosis-Regular.ttf');
+  }
+  
+  @font-face {
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 800;
+    src: local(''), url('./fonts/Dosis-ExtraBold.ttf');
+  }
+  
+  @font-face {
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''), url('./fonts/Dosis-Bold.ttf');
+  }

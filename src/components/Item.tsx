@@ -29,7 +29,7 @@ export const Item = (props: Props) => {
         }
     }
     return (
-        <div className="w-full h-16 border-[5px] rounded-lg flex items-center justify-center text-xl" style={{borderColor: color(), backgroundColor: props.active ? "#aaaaaa": "transparent"}} onClick={(() => { props.click()})}>
+        <div className="w-full h-16 border-[5px] rounded-lg flex items-center justify-center text-xl" style={{borderColor: color(), backgroundColor: props.active ? "#373c40": "transparent"}} onClick={(() => { props.click()})}>
             <p className="select-none font-[digital]" style={{color: color()}}>{props.number}</p>
         </div>
     )

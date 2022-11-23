@@ -22,6 +22,6 @@ export const Timer = () => {
     }, [finishedSort, setTime, start])
 
     return (
-        <div>Zeit: {Math.floor(time / 1000)}s</div>
+        <div className="font-dosis text-2xl text-secondary">Zeit: {(time / 1000).toFixed(1)}s</div>
     )
 }

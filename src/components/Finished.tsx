@@ -7,17 +7,14 @@ export const Finished = () => {
     const [userWonGame] = useAtom(userWon)
 
     return (
-        <div className="flex-col flex">
+        <div className="flex-col flex mt-10">
             <div className="flex flex-row">
                 <div className="basis-1/2">
-                    <h1 className="text-3xl font-bold underline">Finished</h1>
+                    {userWonGame ? <h1 className="text-4xl font-dosis text-primary">You won!</h1> : <h1 className="text-4xl font-dosis text-[#c25132]">You lost!</h1>}
                 </div>
             </div>
             <div>
-                {swaps}
-            </div>
-            <div>
-                {userWonGame ? "You won!" : "You lost!"}
+                Swaps: {swaps}
             </div>
         </div>
     )

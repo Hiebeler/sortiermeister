@@ -10,10 +10,10 @@ export const ComputerSort = () => {
     const [hasStarted, setStarted] = useAtom(alreadyStarted)
     const [gameFinished, setFinished] = useAtom(finished)
     const [userWonGame, setUserWon] = useAtom(userWon)
-    
+
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-    
+
     useEffect(() => {
         if (userWonGame !== true && gameFinished) {
             setUserWon(false)
@@ -35,23 +35,26 @@ export const ComputerSort = () => {
             console.log("finished")
             setFinished(true)
             setList(arr)
-            
+
         }
-        
+
         if (start && !hasStarted) {
             insertionSort();
             setStarted(true)
         }
 
-        
-    
+
+
     }, [hasStarted, list, setList, setStarted, start, setFinished, userWonGame, setUserWon, gameFinished])
 
     return (
-        <div className="flex-row flex gap-5">
-            {list.map((number, index) => (
-                <Item number={number} click={() => {}} key={index} active={false}/>
-            ))}
+        <div className="flex flex-col">
+            <div className="font-dosis text-2xl text-secondary pb-2">Computer:</div>
+            <div className="flex-row flex gap-5">
+                {list.map((number, index) => (
+                    <Item number={number} click={() => { }} key={index} active={false} />
+                ))}
+            </div>
         </div>
     )
 }

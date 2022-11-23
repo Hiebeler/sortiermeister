@@ -13,12 +13,12 @@ export const CustomSort = () => {
     const [userWonGame, setUserWon] = useAtom(userWon)
 
     useEffect(() => {
-        
+
     }, [hasStarted, list, setList, setStarted, start])
 
-    
 
-    const click = (index:number) => {
+
+    const click = (index: number) => {
         if (!start || finishedSorting) return;
         console.log(firstClick);
         if (varFirstClick === -1) {
@@ -33,7 +33,7 @@ export const CustomSort = () => {
         }
     }
 
-    const swap = (index1:number, index2:number) => {
+    const swap = (index1: number, index2: number) => {
         let arr = [...list]
         let temp = arr[index1]
         arr[index1] = arr[index2]
@@ -41,7 +41,7 @@ export const CustomSort = () => {
         return arr
     }
 
-    const checkIfSortedCorrect = (arr:number[]) => {
+    const checkIfSortedCorrect = (arr: number[]) => {
         let sorted = true;
         console.log(arr)
         for (let i = 0; i < arr.length - 1; i++) {
@@ -62,10 +62,13 @@ export const CustomSort = () => {
 
 
     return (
-        <div className="flex-row flex gap-5">
-            {list.map((number, index) => (
-                (varFirstClick === index ? <Item number={number} click={() => {click(index)}} key={index} active={true}/>: <Item number={number} click={() => {click(index)}} key={index} active={false}/>)
-            ))} 
+        <div className="flex flex-col">
+            <div className="font-dosis text-2xl text-secondary pb-2">You:</div>
+            <div className="flex-row flex gap-5">
+                {list.map((number, index) => (
+                    (varFirstClick === index ? <Item number={number} click={() => { click(index) }} key={index} active={true} /> : <Item number={number} click={() => { click(index) }} key={index} active={false} />)
+                ))}
+            </div>
         </div>
     )
 }
