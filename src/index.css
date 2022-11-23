@@ -15,3 +15,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "digital";
+  src: local("01 Digital"),
+   url("./fonts/01Digitall.ttf") format("truetype");
+  }

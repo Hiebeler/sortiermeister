@@ -8,14 +8,16 @@ export const ComputerSort = () => {
     const [list, setList] = useAtom(computerList)
     const [start] = useAtom(started)
     const [hasStarted, setStarted] = useAtom(alreadyStarted)
-    const [, setFinished] = useAtom(finished)
+    const [gameFinished, setFinished] = useAtom(finished)
     const [userWonGame, setUserWon] = useAtom(userWon)
     
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
     
     useEffect(() => {
-
+        if (userWonGame !== true && gameFinished) {
+            setUserWon(false)
+        }
         const insertionSort = async () => {
             let arr = [...list]
             let n = arr.length;
@@ -33,9 +35,7 @@ export const ComputerSort = () => {
             console.log("finished")
             setFinished(true)
             setList(arr)
-            if (userWonGame !== true) {
-                setUserWon(false)
-            }
+            
         }
         
         if (start && !hasStarted) {
@@ -45,7 +45,7 @@ export const ComputerSort = () => {
 
         
     
-    }, [hasStarted, list, setList, setStarted, start, setFinished, userWonGame, setUserWon])
+    }, [hasStarted, list, setList, setStarted, start, setFinished, userWonGame, setUserWon, gameFinished])
 
     return (
         <div className="flex-row flex gap-5">

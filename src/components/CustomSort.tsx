@@ -30,7 +30,7 @@ export const CustomSort = () => {
         console.log(firstClick);
         if (varFirstClick === -1) {
             setFirstClick(index);
-            element.target.style.border = '2px solid red'
+            element.target.style.backgroundColor = 'red'
         } else {
             console.log("firstClick: " + firstClick + " second Click: " + index)
             const arr = [...swap(varFirstClick, index)]
@@ -39,7 +39,7 @@ export const CustomSort = () => {
             setList(arr)
             setSwapCount(swapCount + 1)
             elements.forEach((el:any) => {
-                el.element.target.style.border = 'none'
+                el.element.target.style.backgroundColor = 'transparent'
             });
         }
     }
