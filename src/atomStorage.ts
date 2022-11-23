@@ -14,5 +14,6 @@ const finished = atom<boolean>(false);
 const timer = atom(0)
 const clicks = atom(0)
 const firstClick = atom(-1)
+const clickedElements = atom<any[]>([])
 
-export { computerList, userList, started, alreadyStarted, finished, timer, firstClick, clicks };
+export { computerList, userList, started, alreadyStarted, finished, timer, firstClick, clicks, clickedElements };

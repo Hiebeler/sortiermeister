@@ -1,8 +1,7 @@
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { alreadyStarted, finished, firstClick, started, userList } from "../atomStorage";
+import { alreadyStarted, clickedElements, finished, firstClick, started, userList } from "../atomStorage";
 import { Item } from "./Item";
-
 export const CustomSort = () => {
 
     const [list, setList] = useAtom(userList)
@@ -10,24 +9,26 @@ export const CustomSort = () => {
     const [hasStarted, setStarted] = useAtom(alreadyStarted)
     const [finishedSorting, setFinished] = useAtom(finished)
     const [varFirstClick, setFirstClick] = useAtom(firstClick)
+    const [elements, setElements] = useAtom(clickedElements)
 
     useEffect(() => {
         
     }, [hasStarted, list, setList, setStarted, start])
 
-    let elements:any = []
+    
 
     const click = (index:number, element:any) => {
         if (!start || finishedSorting) return;
         if (!elements.find((el:any) => index === el.index)) {
-            elements.push({
-                index: index,
-                element: element
-            })
+            let localElements = [...elements]
+            localElements.push({index, element})
+            setElements(localElements)
+            console.log(localElements)
         }
         console.log(firstClick);
         if (varFirstClick === -1) {
             setFirstClick(index);
+            element.target.style.border = '2px solid red'
         } else {
             console.log("firstClick: " + firstClick + " second Click: " + index)
             const arr = [...swap(varFirstClick, index)]
