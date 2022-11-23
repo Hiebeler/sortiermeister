@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { alreadyStarted, clickedElements, finished, firstClick, started, userList } from "../atomStorage";
+import { alreadyStarted, clickedElements, clicks, finished, firstClick, started, userList, userWon } from "../atomStorage";
 import { Item } from "./Item";
 export const CustomSort = () => {
 
@@ -10,6 +10,8 @@ export const CustomSort = () => {
     const [finishedSorting, setFinished] = useAtom(finished)
     const [varFirstClick, setFirstClick] = useAtom(firstClick)
     const [elements, setElements] = useAtom(clickedElements)
+    const [swapCount, setSwapCount] = useAtom(clicks)
+    const [userWonGame, setUserWon] = useAtom(userWon)
 
     useEffect(() => {
         
@@ -35,6 +37,7 @@ export const CustomSort = () => {
             checkIfSortedCorrect(arr)
             setFirstClick(-1)
             setList(arr)
+            setSwapCount(swapCount + 1)
             elements.forEach((el:any) => {
                 el.element.target.style.border = 'none'
             });
@@ -62,6 +65,9 @@ export const CustomSort = () => {
         if (sorted) {
             console.log("finished")
             setFinished(true)
+            if (userWonGame !== false) {
+                setUserWon(true)
+            }
         }
     }
 

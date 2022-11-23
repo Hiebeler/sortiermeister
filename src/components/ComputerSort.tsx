@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { alreadyStarted, computerList, finished, started } from "../atomStorage";
+import { alreadyStarted, computerList, finished, started, userWon } from "../atomStorage";
 import { Item } from "./Item";
 
 export const ComputerSort = () => {
@@ -9,7 +9,8 @@ export const ComputerSort = () => {
     const [start] = useAtom(started)
     const [hasStarted, setStarted] = useAtom(alreadyStarted)
     const [, setFinished] = useAtom(finished)
-
+    const [userWonGame, setUserWon] = useAtom(userWon)
+    
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
     
@@ -32,6 +33,9 @@ export const ComputerSort = () => {
             console.log("finished")
             setFinished(true)
             setList(arr)
+            if (userWonGame !== true) {
+                setUserWon(false)
+            }
         }
         
         if (start && !hasStarted) {
@@ -41,7 +45,7 @@ export const ComputerSort = () => {
 
         
     
-    }, [hasStarted, list, setList, setStarted, start, setFinished])
+    }, [hasStarted, list, setList, setStarted, start, setFinished, userWonGame, setUserWon])
 
     return (
         <div className="flex-row flex gap-5">
