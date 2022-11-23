@@ -1,6 +1,7 @@
 type Props = {
     number: number,
-    click: (element:any) => void
+    active: boolean,
+    click: () => void
 }
 
 export const Item = (props: Props) => {
@@ -27,9 +28,8 @@ export const Item = (props: Props) => {
             return 'rgb(236 72 153)'
         }
     }
-
     return (
-        <div className="w-full h-16 border-[5px] rounded-lg flex items-center justify-center text-xl" style={{borderColor: color()}} onClick={((element) => { props.click(element)})}>
+        <div className="w-full h-16 border-[5px] rounded-lg flex items-center justify-center text-xl" style={{borderColor: color(), backgroundColor: props.active ? "#aaaaaa": "transparent"}} onClick={(() => { props.click()})}>
             <p className="select-none font-[digital]" style={{color: color()}}>{props.number}</p>
         </div>
     )

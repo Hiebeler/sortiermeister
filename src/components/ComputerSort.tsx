@@ -50,7 +50,7 @@ export const ComputerSort = () => {
     return (
         <div className="flex-row flex gap-5">
             {list.map((number, index) => (
-                <Item number={number} click={() => {}} key={index} />
+                <Item number={number} click={() => {}} key={index} active={false}/>
             ))}
         </div>
     )

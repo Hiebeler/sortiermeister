@@ -21,3 +21,10 @@ code {
   src: local("01 Digital"),
    url("./fonts/01Digitall.ttf") format("truetype");
   }
+
+  
+@font-face {
+  font-family: "digitalo";
+  src: local("digitalo"),
+   url("./fonts/digitalo.ttf") format("truetype");
+  }

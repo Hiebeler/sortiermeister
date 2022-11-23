@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { alreadyStarted, clickedElements, clicks, finished, firstClick, started, userList, userWon } from "../atomStorage";
+import { alreadyStarted, clicks, finished, firstClick, started, userList, userWon } from "../atomStorage";
 import { Item } from "./Item";
 export const CustomSort = () => {
 
@@ -9,7 +9,6 @@ export const CustomSort = () => {
     const [hasStarted, setStarted] = useAtom(alreadyStarted)
     const [finishedSorting, setFinished] = useAtom(finished)
     const [varFirstClick, setFirstClick] = useAtom(firstClick)
-    const [elements, setElements] = useAtom(clickedElements)
     const [swapCount, setSwapCount] = useAtom(clicks)
     const [userWonGame, setUserWon] = useAtom(userWon)
 
@@ -19,18 +18,11 @@ export const CustomSort = () => {
 
     
 
-    const click = (index:number, element:any) => {
+    const click = (index:number) => {
         if (!start || finishedSorting) return;
-        if (!elements.find((el:any) => index === el.index)) {
-            let localElements = [...elements]
-            localElements.push({index, element})
-            setElements(localElements)
-            console.log(localElements)
-        }
         console.log(firstClick);
         if (varFirstClick === -1) {
             setFirstClick(index);
-            element.target.style.backgroundColor = 'red'
         } else {
             console.log("firstClick: " + firstClick + " second Click: " + index)
             const arr = [...swap(varFirstClick, index)]
@@ -38,9 +30,6 @@ export const CustomSort = () => {
             setFirstClick(-1)
             setList(arr)
             setSwapCount(swapCount + 1)
-            elements.forEach((el:any) => {
-                el.element.target.style.backgroundColor = 'transparent'
-            });
         }
     }
 
@@ -75,8 +64,8 @@ export const CustomSort = () => {
     return (
         <div className="flex-row flex gap-5">
             {list.map((number, index) => (
-                <Item number={number} click={(element) => {click(index, element)}} key={index} />
-            ))}
+                (varFirstClick === index ? <Item number={number} click={() => {click(index)}} key={index} active={true}/>: <Item number={number} click={() => {click(index)}} key={index} active={false}/>)
+            ))} 
         </div>
     )
 }
