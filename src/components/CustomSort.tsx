@@ -26,10 +26,10 @@ export const CustomSort = () => {
         } else {
             console.log("firstClick: " + firstClick + " second Click: " + index)
             const arr = [...swap(varFirstClick, index)]
-            checkIfSortedCorrect(arr)
             setFirstClick(-1)
             setList(arr)
             setSwapCount(swapCount + 1)
+            checkIfSortedCorrect(arr)
         }
     }
 

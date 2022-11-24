@@ -12,7 +12,6 @@ export const Timer = () => {
         if (start) {
         const startTime = new Date()
             timer = setInterval(() => {
-                console.log(finishedSort)
                 const difference = new Date().getTime() - startTime.getTime()
                 setTime(difference)
                 if (finishedSort) clearInterval(timer)

@@ -29,8 +29,9 @@ export const ComputerSort = () => {
                     j--;
                 }
                 arr[j + 1] = current;
-                await sleep(2000)
-                setList([...arr]);
+                    await sleep(2000)
+                    setList([...arr]);
+                
             }
             console.log("finished")
             setFinished(true)

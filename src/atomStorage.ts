@@ -12,9 +12,10 @@ const alreadyStarted = atom<boolean>(false)
 const started = atom(false);
 const finished = atom<boolean>(false);
 const timer = atom(0)
+const computerTime = atom(0)
 const clicks = atom(0)
 const firstClick = atom(-1)
 const clickedElements = atom<any[]>([])
 const userWon = atom<any>(null)
 
-export { computerList, userList, started, alreadyStarted, finished, timer, firstClick, clicks, clickedElements, userWon };
+export { computerList, userList, started, alreadyStarted, finished, timer, computerTime, firstClick, clicks, clickedElements, userWon };
