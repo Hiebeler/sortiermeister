@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { clicks, computerTime, level, timer, userWon } from "../atomStorage";
 import { Ranking } from "./Ranking";
 
