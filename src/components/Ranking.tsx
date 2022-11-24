@@ -8,7 +8,7 @@ export const Ranking = () => {
         const response = await fetch("https://sortiermeister-backend.shorty8274.workers.dev/b4c0351f53/list")
         const data = await response.json()
         data[0].players[0] = { id: 1, data: { name: "test", time: 1000, computerTime: 1000, level: 1 } }
-        setList(data[0].players)
+        setList(data[0].players.slice(0, 10))
     }
 
     useEffect(() => {
