@@ -1,9 +1,11 @@
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { started, finished, timer, computerList, computerTime } from '../atomStorage';
+import { started, finished, timer, computerList, computerTime, level } from '../atomStorage';
 import { ComputerSort } from '../components/ComputerSort';
 import { CustomSort } from '../components/CustomSort';
+import { Dropdown } from '../components/Dropdown';
 import { Finished } from '../components/Finished';
+import { Ranking } from '../components/Ranking';
 import { Timer } from '../components/Timer';
 import './App.css';
 
@@ -14,8 +16,19 @@ const App = () => {
   const [time] = useAtom(timer)
   const [list] = useAtom(computerList)
   const [, setComputerTime] = useAtom(computerTime)
-
+  const [varLevel] = useAtom(level)
   useEffect(() => {
+
+    const getTimeoutTime = () => {
+      if (varLevel === 1) {
+        return 1700
+      } else if (varLevel === 2) {
+        return 1200
+      } else {
+        return 900
+      }
+    }
+
     const insertionSort = () => {
       let time = 0;
       let arr = [...list]
@@ -28,19 +41,22 @@ const App = () => {
           j--;
         }
         arr[j + 1] = current;
-        time += 2000;
+        time += getTimeoutTime();
       }
       console.log(time)
       return time
     }
     setComputerTime(insertionSort());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [startedGame])
 
   return (
-    <div className='min-h-screen h-full p-20 flex flex-col bg-background text-secondary'>
+    <div className='min-h-screen h-full px-20 pt-5 flex flex-col bg-background text-secondary'>
       <div className='flex flex-row w-full'>
-        <h1 className='text-primary text-6xl font-dosis basis-full'>Sortiermeister</h1>
+        <h1 className='text-primary text-6xl font-dosis basis-1/2'>Sortiermeister</h1>
+        <div className="w-full ml-20">
+          <Dropdown />
+        </div>
         {startedGame ? <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4' onClick={() => window.location.reload()}>Reset</button> : <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4' onClick={() => setStarted(true)}>START</button>}
       </div>
       <div className='flex flex-row w-full items-center justify-center pt-10'>
@@ -51,6 +67,7 @@ const App = () => {
         <div className='basis-6/12'><CustomSort /></div>
       </div>
       {finishedSort ? (<Finished />) : (<div></div>)}
+      {!startedGame ? <Ranking /> : null}
     </div>
   );
 }

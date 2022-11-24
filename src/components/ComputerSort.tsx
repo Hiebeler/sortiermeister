@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { alreadyStarted, computerList, finished, started, userWon } from "../atomStorage";
+import { alreadyStarted, computerList, finished, level, started, userWon } from "../atomStorage";
 import { Item } from "./Item";
 
 export const ComputerSort = () => {
@@ -10,10 +10,22 @@ export const ComputerSort = () => {
     const [hasStarted, setStarted] = useAtom(alreadyStarted)
     const [gameFinished, setFinished] = useAtom(finished)
     const [userWonGame, setUserWon] = useAtom(userWon)
+    const [varLevel] = useAtom(level)
 
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
     useEffect(() => {
+
+        const getTimeoutTime = () => {
+            if (varLevel === 1) {
+              return 1700
+            } else if (varLevel === 2) {
+              return 1200
+            } else {
+              return 900
+            }
+          }
+
         if (userWonGame !== true && gameFinished) {
             setUserWon(false)
         }
@@ -28,7 +40,7 @@ export const ComputerSort = () => {
                     j--;
                 }
                 arr[j + 1] = current;
-                await sleep(2000)
+                await sleep(getTimeoutTime())
                 setList([...arr]);
             }
             console.log("finished")
@@ -40,7 +52,7 @@ export const ComputerSort = () => {
             insertionSort();
             setStarted(true)
         }
-    }, [hasStarted, list, setList, setStarted, start, setFinished, userWonGame, setUserWon, gameFinished])
+    }, [hasStarted, list, setList, setStarted, start, setFinished, userWonGame, setUserWon, gameFinished, varLevel])
 
     return (
         <div className="flex flex-col">
