@@ -13,7 +13,7 @@ export const Finished = () => {
 
     useEffect(() => {
         if (userWonGame) {
-            window.prompt("Deine Zeit: " + (userTime / 1000).toFixed(1) + "s\nDeine Swaps: " + swaps)
+            //window.prompt("Deine Zeit: " + (userTime / 1000).toFixed(1) + "s\nDeine Swaps: " + swaps)
         }
     }, [swaps, userTime, userWonGame])
 

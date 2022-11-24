@@ -41,11 +41,11 @@ export const CustomSort = () => {
         return arr
     }
 
-    const checkIfSortedCorrect = (arr: number[]) => {
+    const checkIfSortedCorrect = (arr: any[]) => {
         let sorted = true;
         console.log(arr)
         for (let i = 0; i < arr.length - 1; i++) {
-            if (arr[i] > arr[i + 1]) {
+            if (arr[i].num > arr[i + 1].num) {
                 sorted = false;
                 console.log(arr[i], arr[i + 1])
                 break;

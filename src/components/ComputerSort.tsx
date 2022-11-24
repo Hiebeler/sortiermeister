@@ -13,7 +13,6 @@ export const ComputerSort = () => {
 
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-
     useEffect(() => {
         if (userWonGame !== true && gameFinished) {
             setUserWon(false)
@@ -24,28 +23,23 @@ export const ComputerSort = () => {
             for (let i = 1; i < n; i++) {
                 let current = arr[i];
                 let j = i - 1;
-                while ((j > -1) && (current < arr[j])) {
+                while ((j > -1) && (current.num < arr[j].num)) {
                     arr[j + 1] = arr[j];
                     j--;
                 }
                 arr[j + 1] = current;
-                    await sleep(2000)
-                    setList([...arr]);
-                
+                await sleep(2000)
+                setList([...arr]);
             }
             console.log("finished")
             setFinished(true)
             setList(arr)
 
         }
-
         if (start && !hasStarted) {
             insertionSort();
             setStarted(true)
         }
-
-
-
     }, [hasStarted, list, setList, setStarted, start, setFinished, userWonGame, setUserWon, gameFinished])
 
     return (
