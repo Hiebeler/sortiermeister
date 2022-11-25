@@ -17,6 +17,7 @@ const App = () => {
   const [list] = useAtom(computerList)
   const [, setComputerTime] = useAtom(computerTime)
   const [varLevel] = useAtom(level)
+
   useEffect(() => {
 
     const getTimeoutTime = () => {

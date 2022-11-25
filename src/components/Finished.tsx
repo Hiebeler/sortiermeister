@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
-import { clicks, computerTime, level, timer, userWon } from "../atomStorage";
+import { alreadySaved, clicks, computerTime, level, timer, userWon } from "../atomStorage";
 import { Ranking } from "./Ranking";
 
 export const Finished = () => {
@@ -11,6 +11,8 @@ export const Finished = () => {
     const [userTime] = useAtom(timer)
     const [varLevel] = useAtom(level)
     const [name, setName] = useState("")
+    const [saved, setAlreadySaved] = useAtom(alreadySaved)
+
     console.log(userWonGame)
 
     useEffect(() => {
@@ -22,7 +24,10 @@ export const Finished = () => {
     }
 
     const save = async (event: any) => {
-        postList();
+        if (!saved) {
+            postList();
+            setAlreadySaved(true);
+        }
         event.preventDefault();
     }
 
