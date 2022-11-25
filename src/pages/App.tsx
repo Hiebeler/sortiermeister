@@ -60,7 +60,7 @@ const App = () => {
         {startedGame ? <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4 h-15' onClick={() => window.location.reload()}>Reset</button> : <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4 h-15' onClick={() => setStarted(true)}>START</button>}
       </div>
       <div className='flex flex-row w-full items-center justify-center pt-10'>
-        {!finishedSort ? <Timer /> : <div className='font-dosis text-2xl text-secondary'>Zeit: {Math.floor(time / 1000)}s</div>}
+        {!finishedSort ? <Timer /> : <div className='font-dosis text-2xl text-secondary'>Zeit: {(time / 1000).toFixed(1)}s</div>}
       </div>
       <div className='flex flex-col'>
         <div className='basis-6/12 pb-14 pt-10'><ComputerSort /></div>
