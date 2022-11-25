@@ -17,6 +17,7 @@ const App = () => {
   const [list] = useAtom(computerList)
   const [, setComputerTime] = useAtom(computerTime)
   const [varLevel] = useAtom(level)
+  let ranking = false
 
   useEffect(() => {
 
@@ -48,27 +49,31 @@ const App = () => {
     }
     setComputerTime(insertionSort());
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // get url query params
   }, [startedGame])
-
+  let urlParams = new URLSearchParams(window.location.search);
+  ranking = urlParams.get('ranking') === 'true'
   return (
-    <div className='min-h-screen h-full px-20 pt-5 flex flex-col bg-background text-secondary'>
-      <div className='flex flex-row w-full'>
-        <h1 className='text-primary text-6xl font-dosis basis-1/2'>Sortiermeister</h1>
-        <div className="w-full ml-20">
-          <Dropdown />
-        </div>
-        {startedGame ? <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4 h-15' onClick={() => window.location.reload()}>Reset</button> : <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4 h-15' onClick={() => setStarted(true)}>START</button>}
+      <div>
+        {ranking ? <div className='bg-background h-96 pl-5'><Ranking /></div> : <div className='min-h-screen h-full px-20 pt-5 flex flex-col bg-background text-secondary'>
+              <div className='flex flex-row w-full'>
+                <h1 className='text-primary text-6xl font-dosis basis-1/2'>Sortiermeister</h1>
+                <div className="w-full ml-20">
+                  <Dropdown />
+                </div>
+                {startedGame ? <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4 h-15' onClick={() => window.location.reload()}>Reset</button> : <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4 h-15' onClick={() => setStarted(true)}>START</button>}
+              </div>
+              <div className='flex flex-row w-full items-center justify-center pt-10'>
+                {!finishedSort ? <Timer /> : <div className='font-dosis text-2xl text-secondary'>Zeit: {(time / 1000).toFixed(1)}s</div>}
+              </div>
+              <div className='flex flex-col'>
+                <div className='basis-6/12 pb-14 pt-10'><ComputerSort /></div>
+                <div className='basis-6/12'><CustomSort /></div>
+              </div>
+              {finishedSort ? (<Finished />) : (<div></div>)}
+              {!startedGame ? <Ranking /> : null}
+            </div>}
       </div>
-      <div className='flex flex-row w-full items-center justify-center pt-10'>
-        {!finishedSort ? <Timer /> : <div className='font-dosis text-2xl text-secondary'>Zeit: {(time / 1000).toFixed(1)}s</div>}
-      </div>
-      <div className='flex flex-col'>
-        <div className='basis-6/12 pb-14 pt-10'><ComputerSort /></div>
-        <div className='basis-6/12'><CustomSort /></div>
-      </div>
-      {finishedSort ? (<Finished />) : (<div></div>)}
-      {!startedGame ? <Ranking /> : null}
-    </div>
   );
 }
 
