@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { started, finished, timer, computerList, computerTime, level } from '../atomStorage';
+import { started, finished, timer, computerList, computerTime, level, userList } from '../atomStorage';
 import { ComputerSort } from '../components/ComputerSort';
 import { CustomSort } from '../components/CustomSort';
 import { Dropdown } from '../components/Dropdown';
@@ -14,10 +14,54 @@ const App = () => {
   const [startedGame, setStarted] = useAtom(started)
   const [finishedSort] = useAtom(finished)
   const [time] = useAtom(timer)
-  const [list] = useAtom(computerList)
+  const [list, setComputerList] = useAtom(computerList)
+  const [, setUserList] = useAtom(userList)
   const [, setComputerTime] = useAtom(computerTime)
   const [varLevel] = useAtom(level)
   let ranking = false
+
+    
+  const generateRandomArray = (): number[] => {
+    let arr = [];
+    while(arr.length < 10){
+        var r = Math.floor(Math.random() * 100) + 1;
+        if(arr.indexOf(r) === -1) arr.push(r);
+    }
+    return arr
+}
+
+const randomArray: number[] = generateRandomArray();
+
+const getColor = (index: number) => {
+    const colors: string[] = ["rgb(239 68 68)", 'rgb(249 115 22)', 'rgb(234 179 8)', 'rgb(132 204 22)', 'rgb(34 197 94)', 'rgb(20 184 166)', 'rgb(6 182 212)', 'rgb(59 130 246)', 'rgb(168 85 247)', 'rgb(236 72 153)'];
+    return colors[index];
+}
+
+const insertionSort = (arr:number[]) => {
+    let n = arr.length;
+    for (let i = 1; i < n; i++) {
+      let current = arr[i];
+      let j = i - 1;
+      while ((j > -1) && (current < arr[j])) {
+        arr[j + 1] = arr[j];
+        j--;
+      }
+      arr[j + 1] = current;
+    }
+    return arr
+  }
+
+  const sortedArray = insertionSort([...randomArray]);
+  const colorArray:any[] = [];
+  randomArray.forEach(element => {
+    colorArray.push({num: element, color: getColor(sortedArray.indexOf(element))});
+  });
+
+  const start = () => {
+    setComputerList(colorArray);
+    setUserList(colorArray);
+    setStarted(true);
+  }
 
   useEffect(() => {
 
@@ -61,7 +105,7 @@ const App = () => {
                 <div className="w-full ml-20">
                   <Dropdown />
                 </div>
-                {startedGame ? <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4 h-15' onClick={() => window.location.reload()}>Reset</button> : <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4 h-15' onClick={() => setStarted(true)}>START</button>}
+                {startedGame ? <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4 h-15' onClick={() => window.location.reload()}>Reset</button> : <button className='text-primary font-bold border-[5px] border-primary rounded-lg text-xl px-4 h-15' onClick={() => start()}>START</button>}
               </div>
               <div className='flex flex-row w-full items-center justify-center pt-10'>
                 {!finishedSort ? <Timer /> : <div className='font-dosis text-2xl text-secondary'>Zeit: {(time / 1000).toFixed(1)}s</div>}
