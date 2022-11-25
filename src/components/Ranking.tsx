@@ -7,6 +7,10 @@ export const Ranking = () => {
     const getList = async () => {
         const response = await fetch("https://sortiermeister-backend.shorty8274.workers.dev/b4c0351f53/list")
         const data = await response.json()
+        data[0].players = data[0].players.map((player: any) => {
+            player.data.name = player.data.name === '' ? "Anonymous" : player.data.name
+            return player
+        })
         setList(data[0].players.sort((a: any, b: any) => a.data.time - b.data.time))
     }
 
