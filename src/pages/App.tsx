@@ -50,7 +50,7 @@ const App = () => {
     setComputerTime(insertionSort());
     // eslint-disable-next-line react-hooks/exhaustive-deps
     // get url query params
-  }, [startedGame])
+  }, [startedGame, list, setComputerTime, varLevel])
   let urlParams = new URLSearchParams(window.location.search);
   ranking = urlParams.get('ranking') === 'true'
   return (
