@@ -13,10 +13,8 @@ export const Finished = () => {
     const [name, setName] = useState("")
     const [saved, setAlreadySaved] = useAtom(alreadySaved)
 
-    console.log(userWonGame)
 
     useEffect(() => {
-        console.log(userTime)
     }, [swaps, userTime, userWonGame])
 
     const handleChange = (event: any) => {
@@ -32,15 +30,13 @@ export const Finished = () => {
     }
 
     const postList = async () => {
-        console.log("posting")
         await fetch("https://sortiermeister-backend.shorty8274.workers.dev/b4c0351f53/add", {
             method: 'POST',
             body: JSON.stringify({name: name, time: userTime, computerTime: varComputerTime, level: varLevel})
         })
-        console.log("posted")
+        window.location.reload()
     }
 
-    console.log("rendering")
     return (
         <div className="flex-col flex mt-5">
             <div className="flex flex-row">

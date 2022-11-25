@@ -7,7 +7,7 @@ export const Ranking = () => {
     const getList = async () => {
         const response = await fetch("https://sortiermeister-backend.shorty8274.workers.dev/b4c0351f53/list")
         const data = await response.json()
-        setList(data[0].players.slice(0, 10).sort((a: any, b: any) => a.data.time - b.data.time))
+        setList(data[0].players.sort((a: any, b: any) => a.data.time - b.data.time).slice(0, 10))
     }
 
     useEffect(() => {

@@ -18,7 +18,7 @@ export const ComputerSort = () => {
 
         const getTimeoutTime = () => {
             if (varLevel === 1) {
-              return 1700
+              return 1800
             } else if (varLevel === 2) {
               return 1200
             } else {
@@ -43,7 +43,6 @@ export const ComputerSort = () => {
                 await sleep(getTimeoutTime())
                 setList([...arr]);
             }
-            console.log("finished")
             setFinished(true)
             setList(arr)
 
@@ -56,7 +55,7 @@ export const ComputerSort = () => {
 
     return (
         <div className="flex flex-col">
-            <div className="font-dosis text-2xl text-secondary pb-2">Computer:</div>
+            <div className="font-dosis text-2xl text-secondary pb-2">Computer</div>
             <div className="flex-row flex gap-5">
                 {list.map((number, index) => (
                     <Item number={number} click={() => { }} key={index} active={false} />

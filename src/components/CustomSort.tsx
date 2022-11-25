@@ -20,11 +20,9 @@ export const CustomSort = () => {
 
     const click = (index: number) => {
         if (!start || finishedSorting) return;
-        console.log(firstClick);
         if (varFirstClick === -1) {
             setFirstClick(index);
         } else {
-            console.log("firstClick: " + firstClick + " second Click: " + index)
             const arr = [...swap(varFirstClick, index)]
             setFirstClick(-1)
             setList(arr)
@@ -43,16 +41,13 @@ export const CustomSort = () => {
 
     const checkIfSortedCorrect = (arr: any[]) => {
         let sorted = true;
-        console.log(arr)
         for (let i = 0; i < arr.length - 1; i++) {
             if (arr[i].num > arr[i + 1].num) {
                 sorted = false;
-                console.log(arr[i], arr[i + 1])
                 break;
             }
         }
         if (sorted) {
-            console.log("finished")
             setFinished(true)
             if (userWonGame !== false) {
                 setUserWon(true)
@@ -63,7 +58,7 @@ export const CustomSort = () => {
 
     return (
         <div className="flex flex-col">
-            <div className="font-dosis text-2xl text-secondary pb-2">You:</div>
+            <div className="font-dosis text-2xl text-secondary pb-2">Du</div>
             <div className="flex-row flex gap-5">
                 {list.map((number, index) => (
                     (varFirstClick === index ? <Item number={number} click={() => { click(index) }} key={index} active={true} /> : <Item number={number} click={() => { click(index) }} key={index} active={false} />)

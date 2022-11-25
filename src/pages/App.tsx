@@ -22,7 +22,7 @@ const App = () => {
 
     const getTimeoutTime = () => {
       if (varLevel === 1) {
-        return 1700
+        return 1800
       } else if (varLevel === 2) {
         return 1200
       } else {
@@ -44,7 +44,6 @@ const App = () => {
         arr[j + 1] = current;
         time += getTimeoutTime();
       }
-      console.log(time)
       return time
     }
     setComputerTime(insertionSort());

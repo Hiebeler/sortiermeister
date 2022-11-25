@@ -17,7 +17,7 @@ export const Timer = () => {
                 if (finishedSort) clearInterval(timer)
             }, 100);
         }
-        return () => { clearInterval(timer); console.log("cleared") }
+        return () => { clearInterval(timer) }
     }, [finishedSort, setTime, start])
 
     return (

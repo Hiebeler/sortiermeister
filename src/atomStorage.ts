@@ -10,7 +10,6 @@ const generateRandomArray = (): number[] => {
 }
 
 const randomArray: number[] = generateRandomArray();
-console.log(randomArray)
 
 const getColor = (index: number) => {
     const colors: string[] = ["rgb(239 68 68)", 'rgb(249 115 22)', 'rgb(234 179 8)', 'rgb(132 204 22)', 'rgb(34 197 94)', 'rgb(20 184 166)', 'rgb(6 182 212)', 'rgb(59 130 246)', 'rgb(168 85 247)', 'rgb(236 72 153)'];
@@ -33,11 +32,9 @@ const insertionSort = (arr:number[]) => {
 
   const sortedArray = insertionSort([...randomArray]);
   const colorArray:any[] = [];
-  console.log(randomArray)
   randomArray.forEach(element => {
     colorArray.push({num: element, color: getColor(sortedArray.indexOf(element))});
   });
-  console.log(colorArray);
 
 const computerList = atom<any[]>(colorArray);
 const userList = atom<any[]>(colorArray)
