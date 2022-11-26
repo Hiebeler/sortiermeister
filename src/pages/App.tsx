@@ -23,7 +23,7 @@ const App = () => {
 
     const getTimeoutTime = () => {
       if (varLevel === 1) {
-        return 2000
+        return 2500
       } else if (varLevel === 2) {
         return 1500
       } else {

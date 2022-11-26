@@ -55,7 +55,6 @@ export const CustomSort = () => {
         }
     }
 
-
     return (
         <div className="flex flex-col">
             <div className="font-dosis text-2xl text-secondary pb-2">Du</div>
