@@ -29,9 +29,9 @@ const App = () => {
       if (varLevel === 1) {
         return 2500
       } else if (varLevel === 2) {
-        return 1500
+        return 1700
       } else {
-        return 950
+        return 1100
       }
     }
 
