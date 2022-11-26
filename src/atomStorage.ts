@@ -35,6 +35,7 @@ const insertionSort = (arr:number[]) => {
   randomArray.forEach(element => {
     colorArray.push({num: element, color: getColor(sortedArray.indexOf(element))});
   });
+  console.log(sortedArray);
 
 const computerList = atom<any[]>(colorArray);
 const userList = atom<any[]>(colorArray)
