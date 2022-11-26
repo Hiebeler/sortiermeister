@@ -1,7 +1,5 @@
 import { atom } from "jotai";
 
-
-    
 const generateRandomArray = (): number[] => {
     let arr = [];
     while(arr.length < 10){
@@ -37,9 +35,10 @@ const insertionSort = (arr:number[]) => {
   randomArray.forEach(element => {
     colorArray.push({num: element, color: getColor(sortedArray.indexOf(element))});
   });
+  console.log(sortedArray);
 
-const computerList = atom<any[]>(sortedArray);
-const userList = atom<any[]>(sortedArray)
+const computerList = atom<any[]>(colorArray);
+const userList = atom<any[]>(colorArray)
 const alreadyStarted = atom<boolean>(false)
 const started = atom(false);
 const finished = atom<boolean>(false);
