@@ -99,7 +99,7 @@ const insertionSort = (arr:number[]) => {
   ranking = urlParams.get('ranking') === 'true'
   return (
       <div>
-        {ranking ? <div className='bg-background h-96 pl-5'><Ranking /></div> : <div className='min-h-screen h-full px-20 pt-5 flex flex-col bg-background text-secondary'>
+        {ranking ? <div className='bg-background h-screen p-10'><Ranking /></div> : <div className='min-h-screen h-full px-20 pt-5 flex flex-col bg-background text-secondary'>
               <div className='flex flex-row w-full'>
                 <h1 className='text-primary text-6xl font-dosis basis-1/2'>Sortiermeister</h1>
                 <div className="w-full ml-20">
