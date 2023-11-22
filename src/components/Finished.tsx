@@ -1,15 +1,13 @@
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
-import { alreadySaved, clicks, computerTime, level, timer, userWon } from "../atomStorage";
+import { alreadySaved, clicks, timer, userWon } from "../atomStorage";
 import { Ranking } from "./Ranking";
 
 export const Finished = () => {
 
     const [swaps] = useAtom(clicks)
     const [userWonGame] = useAtom(userWon)
-    const [varComputerTime] = useAtom(computerTime)
     const [userTime] = useAtom(timer)
-    const [varLevel] = useAtom(level)
     const [name, setName] = useState("")
     const [saved, setAlreadySaved] = useAtom(alreadySaved)
 
