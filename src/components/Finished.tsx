@@ -30,9 +30,13 @@ export const Finished = () => {
     }
 
     const postList = async () => {
-        await fetch("https://sortiermeister-backend.shorty8274.workers.dev/b4c0351f53/add", {
+        await fetch(process.env.REACT_APP_API_URL + "/record", {
             method: 'POST',
-            body: JSON.stringify({name: name, time: userTime, computerTime: varComputerTime, level: varLevel})
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name: name, score: userTime})
         })
         window.location.reload()
     }
